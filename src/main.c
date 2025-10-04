@@ -36,6 +36,14 @@ void print_list(Node *head){
     }
 }
 
+void clear_list(Node *head){
+    while (head != NULL){
+        Node *temp = head;
+        head = head -> next;
+        free(temp);
+    }
+}
+
 int main(int argc, char const *argv[])
 {
     Node *head = NULL;
