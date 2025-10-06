@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct Node
 {
@@ -13,6 +14,25 @@ Node *new_node(int data){
     Node *new_node = malloc(sizeof(Node));
     new_node -> data = data;
     return new_node;
+}
+
+Node *get_last(Node *head){
+    Node *temp = head;
+    while (head -> next != NULL) {
+        temp = temp -> next;
+    }
+    return temp;
+}
+
+Node *append(Node *head, int v){
+    if (head == NULL) {
+        return new_node(v);
+    }
+    else{
+        Node *last_node = get_last(head);
+        last_node -> next = new_node(v);
+        return head;
+    }
 }
 
 Node *prepend(Node *head, int v){
@@ -47,7 +67,7 @@ void clear_list(Node *head){
 int main(int argc, char const *argv[])
 {
     Node *head = NULL;
-    
+
     for (int i = 0; i < 10; i++){
         head = prepend(head, i);
     }
